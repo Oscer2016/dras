@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="order by dede58.com/" /><title>租房</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link type="text/css" href="css/css.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/js.js"></script>
+<script type="text/javascript">
+ $(function(){
+	 //导航定位
+	 $(".nav li:eq(6)").addClass("navCur");
+	 })
+</script>
+</head>
+
+<body> 
+ <div class="list-nav">
+  <div class="width1190">
+    <ul class="nav">
+    <li><a href="index.html">首页</a></li>
+    <li><a href="pro.html">租房</a></li>
+    <li><a href="#">分析</a></li>
+    <li style="float:right"><a href="login.html">登录</a></li>
+    <li style="float:right"><a href="reg.html">注册</a></li>
+    <div class="clears"></div>
+   </ul><!--nav/-->
+   <div class="clears"></div>
+  </div><!--width1190/-->
+ </div><!--list-nav/-->
+ 
+ <div class="content">
+  <div class="width1190">
+   <div class="vip-left">
+       <div class="vipNav">
+         <h3 class="vipTitle">个人中心</h3>
+        <dl>
+         <dt class="vipIcon3">账户设置</dt>
+          <dd>
+           <a href="user.html" >我的资料</a>
+          </dd>
+         <dt class="vipIcon1">房源</dt>
+          <dd>
+           <a href="house_list.html" >房源列表</a>
+           <a href="house_add.html">发布房源</a>
+		   <a href="house_ranking.html" class="vipNavCur">问题回答</a>
+          </dd>
+        </dl>
+       </div><!--vipNav/-->
+    </div><!--vip-left/-->
+    <div class="vip-right">
+     <h3 class="vipright-title">问题列表</h3>
+
+
+     <div class="message">
+					<dl>
+						<dt>您这个房子有什么问题么</dt>
+						<dd>发表人：老李房源    </dd>
+						<dd>发表时间：2018-12-22</dd>
+						<c:if test="${suggest.replyCon != null && suggest.replyCon != ''}" >
+							<dd>回复内容：没什么问题,就是不能住</dd>
+						</c:if>
+						 <div >
+						   <input id="problem" name="problem" type="text" style="line-height: 30px;height: 30px;width: 415px;padding: 4px;bottom: 70px;left: 200px;" value placeholder="请输入回复内容" />
+						   <a href="javascript:;" class="xwjg2" style="line-height: 48px;bottom: 66px;left: 649px;" onclick="problem()">回复</a>
+						   </div>
+					</dl>
+					<dl>
+						<dt>您这个房子有什么问题么</dt>
+						<dd>发表人：老李房源    </dd>
+						<dd>发表时间：2018-12-22</dd>
+						<c:if test="${suggest.replyCon != null && suggest.replyCon != ''}" >
+							<dd>回复内容：没什么问题,就是不能住</dd>
+						</c:if>
+						 <div >
+						   <input id="problem" name="problem" type="text" style="line-height: 30px;height: 30px;width: 415px;padding: 4px;bottom: 70px;left: 200px;" value placeholder="请输入回复内容" />
+						   <a href="javascript:;" class="xwjg2" style="line-height: 48px;bottom: 66px;left: 649px;" onclick="problem()">回复</a>
+						   </div>
+					</dl>
+					<dl>
+						<dt>您这个房子有什么问题么</dt>
+						<dd>发表人：老李房源    </dd>
+						<dd>发表时间：2018-12-22</dd>
+						<c:if test="${suggest.replyCon != null && suggest.replyCon != ''}" >
+							<dd>回复内容：没什么问题,就是不能住</dd>
+						</c:if>
+						 <div >
+						   <input id="problem" name="problem" type="text" style="line-height: 30px;height: 30px;width: 415px;padding: 4px;bottom: 70px;left: 200px;" value placeholder="请输入回复内容" />
+						   <a href="javascript:;" class="xwjg2" style="line-height: 48px;bottom: 66px;left: 649px;" onclick="problem()">回复</a>
+						   </div>
+					</dl>
+			</div>
+	 
+
+
+    </div><!--vip-right/-->
+    <div class="clearfix"></div>
+  </div><!--width1190/-->
+ </div><!--content/-->
+ 
+
+ <div class="copy" style="margin-top: 90px;">Copyright@ 2019 租房 版权所有 沪ICP备1234567号-0&nbsp;&nbsp;&nbsp;&nbsp;技术支持：<a target="_blank" href="http://www.webqin.net/">秦王网络</a> </div>
+ 
+</body>
+</html>

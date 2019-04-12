@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="order by dede58.com/" /><title>租房</title>
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+<link type="text/css" href="{% static 'css/css.css' %}" rel="stylesheet" />
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js.js' %}"></script>
+<script type="text/javascript">
+ $(function(){
+	 //导航定位
+	 $(".nav li:eq(6)").addClass("navCur");
+	 })
+</script>
+</head>
+
+<body> 
+ <div class="list-nav">
+  <div class="width1190">
+    <ul class="nav">
+    <li><a href="/index.html">首页</a></li>
+    <li><a href="/house/pro.html">租房</a></li>
+    <li><a href="#">分析</a></li>
+    <li style="float:right"><a href="/house/login.html">登录</a></li>
+    <li style="float:right"><a href="/house/reg.html">注册</a></li>
+    <div class="clears"></div>
+   </ul><!--nav/-->
+   <div class="clears"></div>
+  </div><!--width1190/-->
+ </div><!--list-nav/-->
+ 
+ <div class="content">
+  <div class="width1190">
+   <div class="vip-left">
+       <div class="vipNav">
+         <h3 class="vipTitle">个人中心</h3>
+        <dl>
+         <dt class="vipIcon3">账户设置</dt>
+          <dd>
+           <a href="/house/user.html" class="vipNavCur">我的资料</a>
+          </dd>
+         <dt class="vipIcon1">房源</dt>
+          <dd>
+           <a href="/house/house_list.html" >房源列表</a>
+           <a href="/house/house_add.html">发布房源</a>
+		   <a href="/house/house_ranking.html" >问题回答</a>
+          </dd>
+        </dl>
+       </div><!--vipNav/-->
+    </div><!--vip-left/-->
+    <div class="vip-right">
+     <h3 class="vipright-title">修改资料</h3>
+     <table class="grinfo">
+      <tbody>
+        <tr>
+        <th>用户名：</th>
+        <td> <input class="inp inw" type="text" id="new_username" maxlength="15" placeholder="不可修改" value="" onkeyup="return only_py_num(this)">
+        </td>
+        </tr>
+        <tr>
+        <th>新密码：</th>
+        <td>
+        <input class="inp inw" type="password" id="new_password" placeholder="不少于6位">
+        </td>
+        </tr>
+        <tr>
+        <th>重复新密码：</th>
+        <td>
+        <input class="inp inw" type="password" id="new_password1" placeholder="不少于6位">
+        </td>
+        </tr>
+		<tr>
+        <th>手机号：</th>
+        <td>
+        <input class="inp inw" type="password" id="new_password2" placeholder="不少于6位">
+        </td>
+        </tr>
+		<tr>
+        <th>邮箱：</th>
+        <td>
+        <input class="inp inw" type="password" id="new_password3" placeholder="不少于6位">
+        </td>
+        </tr>
+		<tr>
+        <th>地址：</th>
+        <td>
+        <input class="inp inw" type="password" id="new_password4" placeholder="不少于6位">
+        </td>
+        </tr>
+        <tr>
+        <th>&nbsp;</th>
+        <td colspan="2">
+        <label class="butt" id="butt">
+        <div class="member_mod_buttom" onclick="sub_username()">完成修改</div>
+        </label>
+        </td>
+        </tr>
+        </tbody>
+     </table>
+    </div><!--vip-right/-->
+    <div class="clearfix"></div>
+  </div><!--width1190/-->
+ </div><!--content/-->
+ <div class="copy" style="margin-top: 397px;">Copyright@ 2019 租房 版权所有 沪ICP备1234567号-0&nbsp;&nbsp;&nbsp;&nbsp;技术支持：<a target="_blank" href="http://www.webqin.net/">秦王网络</a> </div>
+</body>
+</html>

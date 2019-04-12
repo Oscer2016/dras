@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="order by dede58.com/" /><title>租房</title>
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link type="text/css" href="css/css.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/js.js"></script>
+<script type="text/javascript">
+ $(function(){
+	 //导航定位
+	 $(".nav li:eq(6)").addClass("navCur");
+	 })
+</script>
+</head>
+
+<body> 
+ <div class="list-nav">
+  <div class="width1190">
+    <ul class="nav">
+    <li><a href="index.html">首页</a></li>
+    <li><a href="pro.html">租房</a></li>
+    <li><a href="#">分析</a></li>
+    <li style="float:right"><a href="login.html">登录</a></li>
+    <li style="float:right"><a href="reg.html">注册</a></li>
+    <div class="clears"></div>
+   </ul><!--nav/-->
+   <div class="clears"></div>
+  </div><!--width1190/-->
+ </div><!--list-nav/-->
+ <div class="content">
+  <div class="width1190">
+   <div class="vip-left">
+       <div class="vipNav">
+         <h3 class="vipTitle">个人中心</h3>
+        <dl>
+         <dt class="vipIcon3">账户设置</dt>
+          <dd>
+           <a href="user.html" >我的资料</a>
+          </dd>
+         <dt class="vipIcon1">房源</dt>
+          <dd>
+           <a href="house_list.html" >房源列表</a>
+           <a href="house_add.html" class="vipNavCur">发布房源</a>
+		   <a href="house_ranking.html" >问题回答</a>
+          </dd>
+        </dl>
+       </div><!--vipNav/-->
+    </div><!--vip-left/-->
+    <div class="vip-right">
+     <h3 class="vipright-title">上传图片</h3>
+     <form action="#" method="get">
+     <dl class="vip-touxiang">
+      <dt><img src="images/tx.jpg" width="100" height="100" /></dt>
+      <dd>
+       <h3><strong>点击选择文件上传头像</strong></h3>
+       <div class="sctx"><input type="file" /><a href="javascript:;">上传</a></div>
+       <p>图片格式：GIF、JPG、JPEG、PNG ，最适合尺寸100*100像素</p>
+      </dd>
+      <div class="clearfix"></div>
+     </dl><!--vip-touxiang/-->
+     </form>
+     <h3 class="vipright-title">发布</h3>
+     <table class="grinfo">
+        <tbody>
+        <tr>
+		<th><span class="red">*</span> 标题：</th>
+        <td>
+        <input class="inp inw" type="text" id="title" value="" maxlength="14">
+        </td>
+		</tr>
+        <th><span class="red">*</span>手机号：</th>
+        <td> 
+		<input class="inp inw" type="text" id="title" value="" maxlength="14">
+        </td>
+        </tr>
+        <tr>
+        <th><span class="red">*</span> 租户：</th>
+        <td>
+        <input class="inp inw" type="text" id="title" value="" maxlength="14">
+        </td>
+        </tr>
+		<tr>
+        <th><span class="red">*</span> 租金：</th>
+        <td>
+        <input class="inp inw" type="text" id="title" value="" maxlength="14">
+        </td>
+        </tr>
+        <tr>
+        <th><span class="red">*</span> 户型：</th>
+		<td>
+        <input class="inp inw" type="text" id="title" value="" maxlength="14">
+        </td>
+        </tr>
+        <tr>
+        <th><span class="red"></span> 面积：</th>
+        <td>
+        <input class="inp inw" type="text" id="age" value="" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
+        </td>
+        </tr>
+		<tr>
+        <th><span class="red"></span> 朝向：</th>
+        <td>
+        <input class="inp inw" type="text" id="age" value="" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
+        </td>
+        </tr>
+		<tr>
+        <th><span class="red"></span> 楼层：</th>
+        <td>
+        <input class="inp inw" type="text" id="age" value="" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
+        </td>
+        </tr>
+		<tr>
+        <th><span class="red"></span> 装修：</th>
+        <td>
+        <input class="inp inw" type="text" id="age" value="" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
+        </td>
+        </tr>
+		<tr>
+        <th><span class="red"></span> 小区位置：</th>
+        <td>
+        <input class="inp inw" type="text" id="age" value="" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
+        </td>
+        </tr>
+		<tr>
+        <th><span class="red"></span> 简介：</th>
+        <td>
+        <textarea id="suggest" name="suggest" style="width:600px;height:100px;" maxlength="200" ></textarea>
+        </td>
+        </tr>
+        
+        
+        <tr>
+        <th>&nbsp;</th>
+        <td colspan="2">
+        <label class="butt" id="butt">
+        <input type="submit" class="member_mod_buttom" onclick="mod_member()" value="立即发布" />
+        </label>
+        </td>
+        </tr>
+        </tbody>
+      </table>
+    </div><!--vip-right/-->
+    <div class="clearfix"></div>
+  </div><!--width1190/-->
+ </div><!--content/-->
+ 
+
+ <div class="copy">Copyright@ 2019 租房 版权所有 沪ICP备1234567号-0&nbsp;&nbsp;&nbsp;&nbsp;技术支持：<a target="_blank" href="http://www.webqin.net/">秦王网络</a> </div>
+ 
+</body>
+</html>
