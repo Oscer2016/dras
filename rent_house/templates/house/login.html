@@ -9,10 +9,27 @@
 <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/js.js' %}"></script>
 <script type="text/javascript">
- $(function(){
-	 //导航定位
-	 $(".nav li:eq(6)").addClass("navCur");
-	 })
+    $(function(){
+	    //导航定位
+	    $(".nav li:eq(6)").addClass("navCur");
+    })
+    function login() {
+        var username = $('#username').val();
+        var password = $('#password').val();
+
+        data = {}
+        data.username = username;
+        data.password = password;
+
+        $.ajax({
+            url: '/house/login_user/',
+            type: 'POST',
+            data: data,
+            success: function(res) {
+                //info = $.parseJSON(res);
+            }
+        });
+    }
 </script>
 </head>
 
@@ -37,18 +54,14 @@
    <div class="reg-logo">
    <form id="signupForm" method="post" action="/house/user.html" class="zcform">{% csrf_token %}
         <p class="clearfix">
-        	<label class="one" for="agent">用户名：</label>
-        	<input id="agent" name="agent" type="text" class="required" value placeholder="请输入您的用户名" />
+        	<label class="one" for="username">用户名：</label>
+        	<input id="username" name="username" type="text" class="required" value placeholder="请输入您的用户名" />
         </p>
         <p class="clearfix">
          	<label class="one"  for="password">登录密码：</label>
         	<input id="password" name="password" type="password" class="{required:true,rangelength:[8,20],}" value placeholder="请输入密码" />
         </p>
-        <!--<p class="clearfix agreement">
-        	<input type="checkbox" />
-            <b class="left">已阅读并同意<a href="#">《用户协议》</a></b>
-        </p>-->
-       	<p class="clearfix"><input class="submit" type="submit" value="立即登录"/></p>
+       	<p class="clearfix"><input class="submit" type="submit" value="立即登录" onclick="login()"/></p>
     </form>
     <div class="reg-logo-right">
      <h3>如果您没有账号，请</h3>
@@ -58,6 +71,8 @@
   </div><!--reg-logo/-->
   </div><!--width1190/-->
  </div><!--content/-->
- <div class="copy">Copyright@ 2019 租房 版权所有 沪ICP备1234567号-0&nbsp;&nbsp;&nbsp;&nbsp;技术支持：<a target="_blank" href="http://www.webqin.net/">秦王网络</a> </div>
+
+  <div class="copy">Copyright@ 2019 租房 版权所有 陕ICP备17001826号-1&nbsp;&nbsp;&nbsp;&nbsp;技术支持：<a target="_blank" href="http://www.xiyoulinuxer.cn/">hepan</a> </div>
+
 </body>
 </html>

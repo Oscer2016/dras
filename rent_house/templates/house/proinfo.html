@@ -1,12 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load static %}
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="author" content="order by dede58.com/" /><title>租房</title>
-<link rel="shortcut icon" href="images/favicon.ico" />
-<link type="text/css" href="css/css.css" rel="stylesheet" />
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/js.js"></script>
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+<link type="text/css" href="{% static 'css/css.css' %}" rel="stylesheet" />
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/js.js' %}"></script>
 <script type="text/javascript">
  $(function(){
 	 //导航定位
@@ -19,22 +20,22 @@
  <div class="list-nav">
   <div class="width1190">
        <ul class="nav">
-    <li><a href="index.html">首页</a></li>
-    <li><a href="pro.html">租房</a></li>
+    <li><a href="/index.html">首页</a></li>
+    <li><a href="/house/pro.html">租房</a></li>
     <li><a href="#">分析</a></li>
-    <li style="float:right"><a href="login.html">登录</a></li>
-    <li style="float:right"><a href="reg.html">注册</a></li>
+    <li style="float:right"><a href="/house/login.html">登录</a></li>
+    <li style="float:right"><a href="/house/reg.html">注册</a></li>
     <div class="clears"></div>
    </ul><!--nav/-->
    <div class="clears"></div>
   </div><!--width1190/-->
  </div><!--list-nav/-->
- <div class="banner" style="background:url(images/ban.jpg) center center no-repeat;"></div>
+ <div class="banner" style="background:url({% static 'images/ban.jpg' %}) center center no-repeat;"></div>
  
  <div class="content">
   <div class="width1190" style="width:1000px;">
    <div class="proImg fl">
-    <img src="images/fangt1.jpg" />
+       <img src="{% static 'images/fangt1.jpg' %}" />
    </div><!--proImg/-->
    <div class="proText fr">
     <h3 class="proTitle">上海市智慧园  两室一厅 一厨一卫 </h3>
@@ -75,7 +76,7 @@
 “我当时像疯了一样。”王松华这样形容自己当时的状态。有一次，宜昌市某市领导到开发区视察工作，本应出面接待的他坚决不去，并愤愤不平地说：“我去陪他干嘛？！他的位子本来应该是我的！！”<br />
 <br />
 
- <img src="images/fang1.jpg" /><img src="images/fang2.jpg" /><img src="images/fang3.jpg" /><img src="images/fang4.jpg" /><img src="images/fang5.jpg" /><img src="images/fang6.jpg" /><img src="images/fang7.jpg" /><img src="images/fang8.jpg" />
+<img src="{% static 'images/fang1.jpg' %}" /><img src="{% static 'images/fang2.jpg' %}" /><img src="{% static 'images/fang3.jpg' %}" /><img src="{% static 'images/fang4.jpg' %}" /><img src="{% static 'images/fang5.jpg' %}" /><img src="{% static 'images/fang6.jpg' %}" /><img src="{% static 'images/fang7.jpg' %}" /><img src="{% static 'images/fang8.jpg' %}" />
   </div><!--proList/-->
   <div class="proList">
 	<div class="message">
@@ -114,27 +115,27 @@
  </div><!--proBox/-->
  </div><!--content/-->
  
+  <div class="copy">Copyright@ 2019 租房 版权所有 陕ICP备17001826号-1&nbsp;&nbsp;&nbsp;&nbsp;技术支持：<a target="_blank" href="http://www.xiyoulinuxer.cn/">hepan</a> </div>
  
- <div class="copy">Copyright@ 2019 租房 版权所有 沪ICP备1234567号-0&nbsp;&nbsp;&nbsp;&nbsp;技术支持：<a target="_blank" href="http://www.webqin.net/">秦王网络</a> </div>
  <script>
 	function problem(){
-					var id = ${userId};
-					if(id == null || id == '' || id == 0){
-						layer.msg(decodeURI("请登录后留言"));
-						/* location.href = '${WebPath }/index/login.action'; */
-					}else{
-						var problem = document.getElementById("problem").value; 
-						var str = /^[，。,.：:!！？“”?A-Za-z0-9\u4e00-\u9fa5]+$/;
-						if(problem == "" || problem == null){
-							layer.msg(decodeURI("请输入留言内容"));
-						}else if(!str.test(problem)){
-								layer.msg(decodeURI("请输入正确的中文"));
-								return ;
-						}else{
-								location.href = '${WebPath }/index/saveSuggest.action?problem='+problem;
-					    }
-				    }
-				}
+		var id = ${userId};
+		if(id == null || id == '' || id == 0){
+			layer.msg(decodeURI("请登录后留言"));
+			/* location.href = '${WebPath }/index/login.action'; */
+		}else{
+			var problem = document.getElementById("problem").value; 
+			var str = /^[，。,.：:!！？“”?A-Za-z0-9\u4e00-\u9fa5]+$/;
+			if(problem == "" || problem == null){
+				layer.msg(decodeURI("请输入留言内容"));
+			}else if(!str.test(problem)){
+					layer.msg(decodeURI("请输入正确的中文"));
+					return ;
+			}else{
+					location.href = '${WebPath }/index/saveSuggest.action?problem='+problem;
+		    }
+	    }
+	}
  </script>
 </body>
 </html>

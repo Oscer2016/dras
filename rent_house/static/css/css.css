@@ -182,7 +182,7 @@ img{ max-width:100%; height:auto;}
 .zcform label.one{width:90px;height:48px;text-align:right;color:#000;}
 .zcform input{float:left;font-size:16px;font-family:"微软雅黑";color:#666;}
 .zcform .submit{margin-left:90px;background:#F93;font-size:20px;letter-spacing:4px;color:#fff;cursor:pointer;}
-#telphone,#password,#confirm_password,.submit,#agent{border:1px solid #ccc;width:300px;height:46px;text-indent:10px;}
+#telphone,#password,#confirm_password,.submit,#username{border:1px solid #ccc;width:300px;height:46px;text-indent:10px;}
 .identifying_code{height:46px;width:180px;_line-height:46px;text-indent:10px;}
 .get_code{height:48px;width:110px;margin-left:10px;border:1px solid #ccc;cursor:pointer;}
 .agreement{margin-left:90px;height:30px;line-height:30px;font-size:12px;}

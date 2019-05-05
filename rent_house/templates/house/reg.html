@@ -7,12 +7,39 @@
 <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
 <link type="text/css" href="{% static 'css/css.css' %}" rel="stylesheet" />
 <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/js.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/js.js' %}"></script>
 <script type="text/javascript">
- $(function(){
-	 //导航定位
-	 $(".nav li:eq(6)").addClass("navCur");
-	 })
+    $(function(){
+        //导航定位
+        $(".nav li:eq(6)").addClass("navCur");
+    });
+    function reg() {
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var confirm_password = $('#confirm_password').val();
+        if (password != confirm_password) {
+            alert("两次密码输入不一致");
+            return;
+        }
+        
+        data = {}
+        data.username = username;
+        data.password = password;
+
+        $.ajax({
+            url: '/house/reg_user/',
+            type: 'POST',
+            data: data,
+            success: function(res) {
+               // var info = $.parseJSON(res);
+               // if (info.status) {
+               //     alert('成功');
+               // } else {
+               //     alert(info.error);
+               // }
+            }
+        });
+    }
 </script>
 </head>
 
@@ -35,10 +62,10 @@
  <div class="content">
   <div class="width1190">
    <div class="reg-logo">
-   <form id="signupForm" method="post" action="" class="zcform">
+    <form id="signupForm" class="zcform">{% csrf_token %}
         <p class="clearfix">
-        	<label class="one" for="agent">用户名：</label>
-        	<input id="agent" name="agent" type="text" class="required" value placeholder="请输入您的用户名" />
+        	<label class="one" for="username">用户名：</label>
+        	<input id="username" name="username" type="text" class="required" value placeholder="请输入您的用户名" />
         </p>
         
         <p class="clearfix">
@@ -49,15 +76,7 @@
         	<label class="one" for="confirm_password">确认密码：</label>
         	<input id="confirm_password" name="confirm_password" type="password" class="{required:true,equalTo:'#password'}" value placeholder="请再次输入密码" />
         </p>
-        <!--<p class="clearfix agreement">
-        	<input type="checkbox" />
-            <b class="left">已阅读并同意<a href="#">《用户协议》</a></b>
-        </p>-->
-		<select>
-		<option value="0"/>
-		<option value="1"/>
-		</select>
-       	<p class="clearfix"><input class="submit" type="submit" value="立即注册"/></p>  
+        <p class="clearfix"><input class="submit" type="submit" value="立即注册" onclick="reg()" /></p>  
     </form>
     <div class="reg-logo-right">
      <h3>如果您已有账号，请</h3>
@@ -68,7 +87,7 @@
   </div><!--width1190/-->
  </div><!--content/-->
  
- <div class="copy">Copyright@ 2019 租房 版权所有 沪ICP备1234567号-0&nbsp;&nbsp;&nbsp;&nbsp;技术支持：<a target="_blank" href="http://www.webqin.net/">秦王网络</a> </div>
+ <div class="copy">Copyright@ 2019 租房 版权所有 陕ICP备17001826号-1&nbsp;&nbsp;&nbsp;&nbsp;技术支持：<a target="_blank" href="http://www.xiyoulinuxer.cn/">hepan</a> </div>
 
 </body>
 </html>

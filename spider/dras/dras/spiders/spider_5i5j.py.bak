@@ -1,0 +1,50 @@
+# -*- coding: utf-8 -*-
+
+import scrapy
+from scrapy.http import Request
+from scrapy.utils.project import get_project_settings
+settings = get_project_settings()
+
+import math
+import time
+import re
+import requests
+from lxml import etree
+
+class Spider5i5jSpider(scrapy.Spider):
+    name = 'spider_5i5j'
+    allowed_domains = ['5i5j.com']
+    start_urls = [
+        'https://bj.5i5j.com/zufang',
+#        'https://hz.5i5j.com/zufang',
+#        'https://sh.5i5j.com/zufang',
+#        'https://wh.5i5j.com/zufang'
+    ]
+
+    def parse(self, response):
+        # 计算页数
+        total = response.xpath('//div[@class="total-box noBor"]/span/text()').extract()
+        if total:
+            page_num = int(math.ceil(float(total[0])/30))
+        else:
+            print "获取房源总数失败!!!"
+
+        # 构造翻页url
+        for i in xrange(page_num):
+            purl = response.url + 'n' + str(i+1) + '/?wscckey=536f11526dd0226f_' + str(int(time.time()))
+            yield Request(url=purl, callback=self.next)
+
+    def next(self, response):
+        print response.url
+        url = re.findall("href='(.*?)';", response.body)[0]
+        print url
+        tree = etree.HTML(requests.get(url, headers={'User-Agent':settings.get('USER_AGENT')}).text)
+
+        title = tree.xpath('//h3[@class="listTit"]/a/text()')
+        detail = tree.xpath('//h3[@class="listTit"]/a/@href')
+        region = tree.xpath('//div[@class="listX"]/p/text()')
+        print region
+        print len(title)
+        print len(detail)
+        #durl = response.url.split('/zufang')[0] + 
+
