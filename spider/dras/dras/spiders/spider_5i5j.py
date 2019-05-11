@@ -31,9 +31,9 @@ class Spider5i5jSpider(scrapy.Spider):
         'https://m.5i5j.com/tj/zufang',
         'https://m.5i5j.com/ty/zufang',
         'https://m.5i5j.com/zz/zufang',
-#        'https://hz.5i5j.com/zufang',
-#        'https://sh.5i5j.com/zufang',
-#        'https://wh.5i5j.com/zufang'
+        'https://hz.5i5j.com/zufang',
+        'https://sh.5i5j.com/zufang',
+        'https://wh.5i5j.com/zufang'
     ]
     city_info = {
         'bj': ['北京', 29349],
@@ -75,10 +75,55 @@ class Spider5i5jSpider(scrapy.Spider):
         Spider5i5jSpider.headers['referer'] = response.url + '/index'
         city = response.url.split('/')[3]
         page_num = int(math.ceil(float(Spider5i5jSpider.city_info[city][1])/30))
+        
+        item = DrasItem()
         # 构造翻页url
         for i in xrange(1, page_num):
             purl = response.url + '/index-n' + str(i)
-            yield Request(url=purl, headers=Spider5i5jSpider.headers, meta={'city_code':city,'city_name':Spider5i5jSpider.city_info[city][0]}, callback=self.next)
+            res = requests.get(purl, headers=Spider5i5jSpider.headers).text
+            try:
+                houses = json.loads(res)['houses']
+                for house in houses:
+                    house_id = house['_source']['housesid']
+                    item['title'] = house['_source']['housetitle']
+                    item['detail'] = 'https://{}.5i5j.com/zufang/{}.html'.format(city, house_id)
+                    item['city'] = Spider5i5jSpider.city_info[city][0]
+                    try:
+                        item['region'] = house['_source']['qyname'] + '-' + house['_source']['sqname'] #+ house['_source']['communityname']
+                    except:
+                        item['region'] = str(house['_source']['qyname']) + '-' + str(house['_source']['sqname'])
+                    item['area'] = house['_source']['area']
+                    item['scale'] = house['_source']['bedroom_cn'] + house['_source']['livingroom_cn'] + house['_source']['toilet_cn']
+                    item['floor'] = house['_source']['floorPositionStr'] + '/' + str(house['_source']['houseallfloor'])
+                    item['direction'] = house['_source']['heading']
+                    item['price'] = house['_source']['price']
+                    item['picture'] = house['_source']['imgurl']
+                    item['pubdate'] = house['_source']['bookin_time']
+                    item['source'] = '我爱我家'
+                    item['collection'] = '5i5j'
+                    item['timestamp'] = int(time.time()*1000)
+        
+                    #print house
+                    print item['title']
+                    print item['detail']
+                    print item['city']
+                    print item['region']
+                    print item['area']
+                    print item['scale']
+                    print item['floor']
+                    print item['direction']
+                    print item['price']
+                    print item['picture']
+                    print item['pubdate']
+        
+                    yield item
+                
+                time.sleep(random.randint(0, 10))
+                #time.sleep(15)
+            except:
+                pass
+                #print res
+            #yield Request(url=purl, headers=Spider5i5jSpider.headers, meta={'city_code':city,'city_name':Spider5i5jSpider.city_info[city][0]}, callback=self.next)
 
     def next(self, response):
         print response.url
@@ -91,7 +136,7 @@ class Spider5i5jSpider(scrapy.Spider):
             item['city'] = response.meta['city_name']
             try:
                 item['region'] = house['_source']['qyname'] + '-' + house['_source']['sqname'] #+ house['_source']['communityname']
-            except Exception as e:
+            except:
                 item['region'] = str(house['_source']['qyname']) + '-' + str(house['_source']['sqname'])
             item['area'] = house['_source']['area']
             item['scale'] = house['_source']['bedroom_cn'] + house['_source']['livingroom_cn'] + house['_source']['toilet_cn']

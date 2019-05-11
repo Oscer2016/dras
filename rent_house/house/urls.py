@@ -15,5 +15,7 @@ urlpatterns = [
     path(r'pro_new.html', views.new, name='new'),
     path(r'reg_user/', views.reg_user, name='reg_user'),
     path(r'login_user/', views.login_user, name='login_user'),
+    re_path(r'suggest/*', views.search_suggest, name='search_suggest'),
+    re_path(r'house_search/*', views.house_search, name='house_search'),
 ]
 

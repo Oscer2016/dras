@@ -14,17 +14,17 @@ class CustomAnalyzer(_CustomAnalyzer):
     def get_analysis_definition(self):
         return {}
 
-
 ik_analyzer = CustomAnalyzer('ik_max_word', filter=['lowercase'])
 cur_date = time.strftime('%Y.%m.%d', time.localtime(time.time()))
 
 class House(Document):
     title = Text(analyzer='ik_max_word', search_analyzer='ik_max_word', fields={'title': Keyword()})
+    title_suggest = Completion(analyzer=ik_analyzer)
     detail = Keyword()
     city = Keyword()
-    #region_suggest = Completion(analyzer=ik_analyzer, search_analyzer="ik_max_word", fields={'region': Keyword()})
     region = Text(analyzer='ik_max_word', search_analyzer='ik_max_word', fields={'region': Keyword()})
-    area = Keyword()
+    region_suggest = Completion(analyzer=ik_analyzer)
+    area = Integer()
     scale = Keyword()
     floor = Keyword()
     direction = Keyword()

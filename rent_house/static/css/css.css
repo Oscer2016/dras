@@ -64,6 +64,16 @@ img{ max-width:100%; height:auto;}
 .xinren dt{float:left;width:65px;color:#606062; height:60px; line-height:60px; font-size:30px;}
 .xinren dd{float:left;width:160px;color:#717171; font-size:12px;padding:13px 0 0 0; line-height:18px;}
 
+/*search*/
+.input-area{position:relative;margin-top:25px;text-align:center;margin-bottom:15px;margin-right:80px;}
+.input-area .input-search{border:1px solid #bfbfbf;padding:0 10px;outline:none;height:44px;width:520px;font-size:16px;}
+.input-area .btn-search{position:absolute;margin-top:1px;width:95px;height:45px;background:url(../images/btn-search.png) no-repeat;border:none;cursor:pointer;}
+
+/*suggest*/
+.input-area .dataList{display:none;position:relative;margin-left:534px;top:2px;width:538px;padding:5px 0;background:#fff;border:1px solid #bfbfbf;border-top:none;}
+.input-area .dataList li{padding:2px 15px;text-align:left;font-size:14px;}
+.input-area .dataList li:hover{background:#f0f0f0;color:#0080cc;font-weight:bold;}
+
 /*content*/
 .content{padding:10px 0;}
 .title{margin:20px 0 0 0;height:23px; line-height:23px;border-bottom:#ddd 1px solid;border-left:#f1323b 4px solid;padding-left:5px; font-size:18px; font-weight:400; position:relative;}

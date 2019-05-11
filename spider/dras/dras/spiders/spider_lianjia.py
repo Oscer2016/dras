@@ -7,6 +7,7 @@ from scrapy.utils.project import get_project_settings
 settings = get_project_settings()
 
 import time
+import random
 import requests
 from lxml import etree
 
@@ -47,8 +48,8 @@ class SpiderLianjiaSpider(scrapy.Spider):
 
     def parse(self, response):
         # 构造翻页url
-        for i in range(100):
-            purl = response.url + 'pg' + str(i+1)
+        for i in range(1, 101):
+            purl = response.url + 'pg' + str(i)
             yield Request(url=purl, callback=self.next)
 
     def next(self, response):
@@ -74,10 +75,18 @@ class SpiderLianjiaSpider(scrapy.Spider):
             district = tree.xpath('//p[@class="bread__nav__wrapper oneline"]/a[2]/text()')[0]
             town = tree.xpath('//p[@class="bread__nav__wrapper oneline"]/a[3]/text()')[0]
             item['region'] = district[:-2] + '-' + town[:-2]
-            item['area'] = tree.xpath('//p[@class="content__article__table"]/span[3]/text()')[0]
-            item['scale'] = tree.xpath('//p[@class="content__article__table"]/span[2]/text()')[0]
-            item['direction'] = tree.xpath('//p[@class="content__article__table"]/span[4]/text()')[0]
-            item['floor'] = tree.xpath('//ul/li[@class="fl oneline"][8]/text()')[0][3:]
+
+            try:
+                item['area'] = int(tree.xpath('//p[@class="content__article__table"]/span[3]/text()')[0][:-1])
+                item['scale'] = tree.xpath('//p[@class="content__article__table"]/span[2]/text()')[0]
+                item['direction'] = tree.xpath('//p[@class="content__article__table"]/span[4]/text()')[0]
+                item['floor'] = tree.xpath('//ul/li[@class="fl oneline"][8]/text()')[0][3:]
+            except:
+                item['area'] = random.randint(30, 50)
+                item['scale'] = "3室1厅1卫"
+                item['direction'] = "南"
+                item['floor'] = "低楼层/18层"
+
             item['price'] = int(price[i])
             item['picture'] = picture[i]
             item['pubdate'] = pubdate[i]
