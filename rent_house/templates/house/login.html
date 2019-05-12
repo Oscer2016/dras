@@ -8,6 +8,8 @@
 <link type="text/css" href="{% static 'css/css.css' %}" rel="stylesheet" />
 <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/js.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sweetalert-dev.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/sweetalert.css' %}">
 <script type="text/javascript">
     $(function(){
 	    //导航定位
@@ -16,6 +18,16 @@
     function login() {
         var username = $('#username').val();
         var password = $('#password').val();
+        
+        if (username == "" || password == "") {
+			swal({
+				"title": "",
+				"text": "用户名和密码均不能为空"
+			}, function() {
+				location.href = "/house/login.html";
+			});
+			return;
+		}
 
         data = {}
         data.username = username;
@@ -25,8 +37,18 @@
             url: '/house/login_user/',
             type: 'POST',
             data: data,
-            success: function(res) {
-                //info = $.parseJSON(res);
+            success: function(ret) {
+                info = $.parseJSON(ret);
+                if (info.status) {
+					location.href = "/";
+				} else {
+					swal({
+						"title": "",
+					    "text": info.msg
+					}, function() {
+					   location.href = "/house/login.html";
+					});
+				}
             }
         });
     }
@@ -39,7 +61,7 @@
     <ul class="nav">
     <li><a href="/index.html">首页</a></li>
     <li><a href="/house/house_search/">租房</a></li>
-    <li><a href="#">分析</a></li>
+    <li><a href="/visualization/index.html">分析</a></li>
     <li style="float:right"><a href="/house/login.html">登录</a></li>
     <li style="float:right"><a href="/house/reg.html">注册</a></li>
     <div class="clears"></div>
@@ -52,7 +74,7 @@
  <div class="content">
   <div class="width1190">
    <div class="reg-logo">
-   <form id="signupForm" method="post" action="/house/user.html" class="zcform">{% csrf_token %}
+   <form class="zcform">
         <p class="clearfix">
         	<label class="one" for="username">用户名：</label>
         	<input id="username" name="username" type="text" class="required" value placeholder="请输入您的用户名" />
@@ -61,7 +83,7 @@
          	<label class="one"  for="password">登录密码：</label>
         	<input id="password" name="password" type="password" class="{required:true,rangelength:[8,20],}" value placeholder="请输入密码" />
         </p>
-       	<p class="clearfix"><input class="submit" type="submit" value="立即登录" onclick="login()"/></p>
+       	<p class="clearfix"><input class="submit" type="button" value="立即登录" onclick="login()"/></p>
     </form>
     <div class="reg-logo-right">
      <h3>如果您没有账号，请</h3>

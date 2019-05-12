@@ -14,7 +14,11 @@ index_name = 'house_2019.05.09'
 
 def index(request):
     #return HttpResponse("Hello, you're at the house index.")
-    return render(request, "house/index.html")
+    is_login = False
+    if request.session.get("username"):
+        is_login = True
+    print("session:", request.session.get("username"))
+    return render(request, "house/index.html", {"is_login": is_login, "username": request.session.get("username")})
 
 
 def register(request):
@@ -23,6 +27,14 @@ def register(request):
 
 def login(request):
     return render(request, "house/login.html")
+
+
+def logout(request):
+    try:
+        del request.session["username"]
+    except KeyError:
+        pass
+    return render(request, "house/index.html")
 
 
 def user(request):
@@ -46,27 +58,45 @@ def new(request):
 
 
 def reg_user(request):
-    
+    info = {"code": 200}
     if request.method == 'POST':
         username = request.POST.get("username")
         password = request.POST.get("password")
         
-        user = User(username=username, password=password)
-        user.save()
-
-    return render(request, "house/login.html")
+        res = User.objects.filter(username=username)
+        
+        if res:
+            info["status"] = False
+            info["msg"] = "该用户名已被注册,请更换用户名后重试"
+        else:
+            user = User(username=username, password=password)
+            user.save()
+            info["status"] = True
+            info["msg"] = "success"
+    
+    return HttpResponse(json.dumps(info))
 
 
 def login_user(request):
-
+    info = {"code": 200}
     if request.method == 'POST':
         username = request.POST.get("username")
         password = request.POST.get('password')
 
-        print(username)
-        print(password)
+        res = User.objects.filter(username=username)
+        if not res:
+            info["status"] = False
+            info["msg"] = "该用户不存在,请检查后重新登录"
+        elif password == res[0].password:
+            info["status"] = True
+            info["msg"] = "success"
 
-    return render(request, "index.html")
+            request.session["username"] = res[0].username
+        else:
+            info["status"] = False
+            info["msg"] = "密码不正确,请检查后重新登录"
+        print(info)
+    return HttpResponse(json.dumps(info))
 
 
 def search_suggest(request):
@@ -144,5 +174,9 @@ def house_search(request):
         hit_list.append(hit_dict)
     print(hit_list)
     print(key_words)
-    return render(request, "house/pro.html", {"page": page, "all_hits": hit_list, "key_words": key_words, "total_nums": total_nums, "page_nums": page_nums})
+    is_login = False
+    if request.session.get("username"):
+        is_login = True
+    print("session:", request.session.get("username"))
+    return render(request, "house/pro.html", {"is_login":is_login, "username": request.session.get("username"), "page": page, "all_hits": hit_list, "key_words": key_words, "total_nums": total_nums, "page_nums": page_nums})
 

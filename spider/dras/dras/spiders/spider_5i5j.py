@@ -31,9 +31,9 @@ class Spider5i5jSpider(scrapy.Spider):
         'https://m.5i5j.com/tj/zufang',
         'https://m.5i5j.com/ty/zufang',
         'https://m.5i5j.com/zz/zufang',
-        'https://hz.5i5j.com/zufang',
-        'https://sh.5i5j.com/zufang',
-        'https://wh.5i5j.com/zufang'
+#        'https://hz.5i5j.com/zufang',
+#        'https://sh.5i5j.com/zufang',
+#        'https://wh.5i5j.com/zufang'
     ]
     city_info = {
         'bj': ['北京', 29349],
@@ -80,7 +80,7 @@ class Spider5i5jSpider(scrapy.Spider):
         # 构造翻页url
         for i in xrange(1, page_num):
             purl = response.url + '/index-n' + str(i)
-            res = requests.get(purl, headers=Spider5i5jSpider.headers).text
+            res = requests.get(purl, headers=Spider5i5jSpider.headers, allow_redirects=False).text
             try:
                 houses = json.loads(res)['houses']
                 for house in houses:
@@ -118,8 +118,8 @@ class Spider5i5jSpider(scrapy.Spider):
         
                     yield item
                 
-                time.sleep(random.randint(0, 10))
-                #time.sleep(15)
+                #time.sleep(random.randint(0, 10))
+                time.sleep(60)
             except:
                 pass
                 #print res

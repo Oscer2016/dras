@@ -38,10 +38,22 @@
        <ul class="nav">
     <li><a href="/index.html">首页</a></li>
     <li><a href="/house/house_search/">租房</a></li>
-    <li><a href="#">分析</a></li>
-    <div class="top-city"><i class="icon-city"></i>北京</div>
+    <li><a href="/visualization/index.html">分析</a></li>
+    <!--<div class="top-city"><i class="icon-city"></i>北京</div>-->
+        {% if is_login %}
+	<li class="dropdown" style="float:right">
+		<a href="#" class="dropdown-toggle" style="background-color:#2d2d2d;border-color:white;" data-toggle="dropdown">{{ username }} </a>
+		<!--
+		<ul class="dropdown-menu" style="top: 96%;min-width: 140px;">
+			<li style="height:65%"><a style="height:75%" href="/house/user.html">个人中心</a></li>
+			<li style="height:65%"><a style="height:75%" href="/house/logout/">退出登录</a></li>
+		</ul>
+		-->
+	</li>
+    {% else %}
     <li style="float:right"><a href="/house/login.html">登录</a></li>
     <li style="float:right"><a href="/house/reg.html">注册</a></li>
+    {% endif %}
     <div class="clears"></div>
    </ul><!--nav/-->
    <div class="clears"></div>
